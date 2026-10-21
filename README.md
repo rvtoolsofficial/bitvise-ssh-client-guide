@@ -1,6 +1,6 @@
-# Bitvise SSH Client for Windows: Complete SSH, SFTP, SCP, and Tunneling Guide
+# Bitvise SSH Client for Windows: Download, Features, SSH, and SFTP Guide
 
-> A detailed introduction to Bitvise SSH Client (BvSshClient): secure remote terminal access, file transfer, port forwarding, command-line tools, installation, and security practices for Windows.
+> Download Bitvise SSH Client 9.66 for Windows and learn about BvSshClient (Bitvise Tunnelier), SSH2 terminal access, SFTP/SCP file transfer, SSH tunneling, port forwarding, installation, and security.
 
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows&logoColor=white)
 ![Protocol](https://img.shields.io/badge/protocol-SSH2-2563EB)
@@ -157,6 +157,22 @@ Yes. The product includes SSH port-forwarding and dynamic tunneling features. Co
 
 Bitvise states that SSH Client can be used free of charge in all types of environments. Review the current EULA for the full terms.
 
+
+### Where can I download Bitvise SSH Client for Windows?
+
+Use the green button near the top of this page to download the Bitvise SSH Client 9.66 ZIP, or visit the [Bitvise SSH Client download page](https://www.bitvise.com/ssh-client-download) for official release information. Verify the installer's signature before running it.
+
+### What is Bitvise Tunnelier?
+
+Tunnelier is the former name associated with Bitvise SSH Client, also called BvSshClient. It is a Windows SSH2 client for terminal access, SFTP file transfer, and SSH tunneling.
+
+### Can Bitvise SSH Client transfer files over SFTP?
+
+Yes. Bitvise SSH Client includes a graphical SFTP file-transfer interface and the scriptable `sftpc` command-line client. The available operations depend on the remote SSH server and account permissions.
+
+### Does Bitvise SSH Client support SSH port forwarding?
+
+Yes. It supports SSH port forwarding and dynamic tunneling options. Configure forwards only for authorized hosts and services, and keep the scope as narrow as possible.
 ### How do I verify the installer?
 
 Use Bitvise's [official digital-signature verification instructions](https://www.bitvise.com/verify-installer-signature) and confirm Windows reports that the signature is OK and the signer is Bitvise.
