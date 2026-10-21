@@ -3,6 +3,8 @@
 > Download Bitvise SSH Client 9.66 for Windows and learn about BvSshClient (Bitvise Tunnelier), SSH2 terminal access, SFTP/SCP file transfer, SSH tunneling, port forwarding, installation, and security.
 
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows&logoColor=white)
+![Topic](https://img.shields.io/badge/topic-SSH%20client-2563EB)
+![Topic](https://img.shields.io/badge/topic-SFTP%20%2F%20SCP-0EA5A4)
 ![Protocol](https://img.shields.io/badge/protocol-SSH2-2563EB)
 ![Guide](https://img.shields.io/badge/type-practical%20guide-7C3AED)
 
